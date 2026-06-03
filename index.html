@@ -6,7 +6,8 @@
     <title>Muhammad Ikhsan Akbar</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+   
+
     <style>
         body {
             margin: 0;
@@ -64,9 +65,9 @@
         }
 
         /* Delay */
-        .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 1.5s; }
-        .delay-3 { animation-delay: 2.5s; }
+        .delay-1 { animation-delay: 1.5s; }
+        .delay-2 { animation-delay: 3s; }
+        .delay-3 { animation-delay: 4.5s; }
 
         a:hover { opacity: 0.7; transition: 0.3s; cursor: pointer; }
         .font-poppins { font-family: 'Poppins', sans-serif; }
@@ -90,4 +91,49 @@
         <a href="https://www.instagram.com/iksnakbr" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-instagram" style="font-size: 30px; margin: 0 10px;"></i></a>
         <a href="https://discordapp.com/users/1386319360590876695" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-discord" style="font-size: 30px; margin: 0 10px;"></i></a>
         <a href="https://github.com/Iksnakbr" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-github" style="font-size: 30px; margin: 0 10px;"></i></a>
-        <a href="
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gadotcr444@gmail.com" target="_blank" style="text-decoration: none; color: white;"><i class="fa-solid fa-envelope" style="font-size: 30px; margin: 0 10px;"></i></a>
+    </div>
+             
+   <script>
+    const kataKata = ["Information Technology Student", "Web Developer", "Prompt Engineer"];
+    let indeksKata = 0, indeksHuruf = 0, sedangMenghapus = false;
+    
+    function efekKetik() {
+        let kataSaatIni = kataKata[indeksKata];
+        
+        if (sedangMenghapus) {
+            document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf - 1);
+            indeksHuruf--;
+        } else {
+            document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf + 1);
+            indeksHuruf++;
+        }
+        
+        // ATUR KECEPATAN DI SINI
+        // Semakin besar angkanya, semakin lambat
+        let kecepatan = sedangMenghapus ? 50 :  100; 
+        
+        if (!sedangMenghapus && indeksHuruf === kataSaatIni.length) {
+            kecepatan = 2000; // Jeda 3 detik setelah kata selesai diketik
+            sedangMenghapus = true;
+        } else if (sedangMenghapus && indeksHuruf === 0) {
+            sedangMenghapus = false;
+            indeksKata = (indeksKata + 1) % kataKata.length;
+            kecepatan = 500; // Jeda sebelum mulai kata baru
+        }
+        setTimeout(efekKetik, kecepatan);
+    }
+
+    // Hanya gunakan SATU listener agar tidak konflik
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('preloader').style.opacity = '0';
+            document.getElementById('preloader').style.visibility = 'hidden';
+            
+            // Jeda 1 detik sebelum animasi ngetik pertama kali dimulai
+            setTimeout(efekKetik, 1000);
+        }, 2000); 
+    });
+</script>
+</body>
+</html>
