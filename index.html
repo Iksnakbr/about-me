@@ -5,217 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ikhsan Akbar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-        .typewriter {
-            white-space: nowrap;
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
             overflow: hidden;
-            display: inline-block; /* Mengikuti panjang teks */
-            border-right: 2px solid #00ffff; /* Kursor ketik warna aqua */
-            
-            /* Jalankan animasi: ketik (3.5 detik) dan kursor berkedip (selamanya) */
-            animation: 
-                ketik 3.5s steps(30) forwards,
-                kedipKursor 0.75s step-end infinite;
         }
 
-        /* Rumus 1: Menggerakkan lebar teks dari 0 sampai kebuka semua */
-        @keyframes ketik {
-            from { width: 0; }
-            to { width: 100%; }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        /* Rumus 2: Membuat kursor garis vertikal berkedip */
-        @keyframes kedipKursor {
-            from, to { border-color: transparent; }
-            50% { border-color: #00ffff; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 3s linear infinite;
         }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-
-            /* Gaya untuk layar latar belakang loading */
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #000000; /* Menyesuaikan tema hitam web kamu */
-  z-index: 9999; /* Memastikan loading berada di lapisan paling depan */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-/* Gaya untuk lingkaran berputar (Spinner) */
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid rgba(255, 255, 255, 0.1); /* Garis samar */
-  border-top: 5px solid #ffffff; /* Garis putih tegas yang berputar */
-  border-radius: 50%;
-  animation: spin 3s linear infinite;
-}
-
-/* Animasi putar */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-#bg-video {
-    position: fixed;   
-    top: 0;
-    left: 0;
-    width: 100%;   
-    height: 100vh;  
-    z-index: -1;       
-    object-fit: cover; 
-    opacity: 0.3;      
-}
-</style>
-
-
+        a:hover, i:hover {
+            opacity: 0.7;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body style="background-color: #000000; height: 100vh; margin: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<body>
     <div id="preloader">
-  <div class="spinner"></div>
-</div>
-<div id="video-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
-    <iframe 
-        src="https://www.youtube.com/embed/YRBezBirmQk?autoplay=1&mute=1&loop=1&playlist=YRBezBirmQk&controls=0&showinfo=0&autohide=1&playsinline=1" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen 
-        style="width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-    </iframe>
-</div>
-    <h3 style="color:rgb(255, 255, 255); text-align: center; font-family: Arial, Helvetica, sans-serif;">Hi, I am</h3> 
-    <h1 style="color: white; text-align: center; font-family: Arial, Helvetica, sans-serif;">Muhammad Ikhsan Akbar</h1>
-    <div style="text-align: center; height: 30px;">
-        <span id="typing-text" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 16px; border-right: 2px solid #ffffff; padding-right: 5px; white-space: nowrap;"></span>
+        <div class="spinner"></div>
     </div>
-        <p style="color: white; text-align: center; margin-top: 15vh;">About Me |  Journey | Experience</p>
 
-        <div style="text-align: center; margin-top: 4;">
-            <abbr title="Instagram">
-                <a href="https://www.instagram.com/iksnakbr" target="_blank " style="text-decoration: none;">
-            <i class="fa-brands fa-instagram" style="color: white; font-size: 30px; margin: 0 10px;"></i> </a>
+    <h3 style="color: white; text-align: center; margin-bottom: 10px;">Hi, I am</h3> 
+    <h1 style="color: white; text-align: center; margin-top: 0">Muhammad Ikhsan Akbar</h1>
+    
+    <div style="text-align: center; height: 30px;">
+        <span id="typing-text" style="color: #ffffff; font-size: 16px; border-right: 2px solid #ffffff; padding-right: 2px; white-space: nowrap;"></span>
+    </div>
+
+    <p style="color: white; text-align: center; margin-top: 15vh;">About Me | Journey | Experience</p>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <abbr title="Instagram">
+            <a href="https://www.instagram.com/iksnakbr" target="_blank" style="text-decoration: none;">
+                <i class="fa-brands fa-instagram" style="color: white; font-size: 30px; margin: 0 10px;"></i>
+            </a>
         </abbr>
-            <abbr title="Discord">
-                <a href="https://discordapp.com/users/1386319360590876695" target="_blank " style="text-decoration: none;">
-            <i class="fa-brands fa-discord" style="color: white; font-size: 30px; margin: 0 10px;"></i>
+        <abbr title="Discord">
+            <a href="https://discordapp.com/users/1386319360590876695" target="_blank" style="text-decoration: none;">
+                <i class="fa-brands fa-discord" style="color: white; font-size: 30px; margin: 0 10px;"></i>
             </a>
-            </abbr>
-            <abbr title="Github">
-                <a href="https://github.com/Iksnakbr" target="_blank" style="text-decoration: none;"> 
-            <i class="fa-brands fa-github" style="color: white; font-size: 30px; margin: 0 10px;"></i>
+        </abbr>
+        <abbr title="Github">
+            <a href="https://github.com/Iksnakbr" target="_blank" style="text-decoration: none;"> 
+                <i class="fa-brands fa-github" style="color: white; font-size: 30px; margin: 0 10px;"></i>
             </a> 
-            </abbr>
-            <abbr title="Gmail">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gadotcr444@gmail.com" target="_blank" style="text-decoration: none;">
-            <i class="fa-solid fa-envelope" style="color: white; font-size: 30px; margin: 0 10px;"></i>
+        </abbr>
+        <abbr title="Gmail">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gadotcr444@gmail.com" target="_blank" style="text-decoration: none;">
+                <i class="fa-solid fa-envelope" style="color: white; font-size: 30px; margin: 0 10px;"></i>
             </a>
-            </abbr>
-             </div>
+        </abbr>
+    </div>
              
-             <div> 
-             <style>
-  /* Mengatur efek saat kursor menyentuh link menu atau ikon */
-  a:hover, i:hover {
-    opacity: 0.7;
-    transition: 0.3s; /* Biar transisinya halus */
-    cursor: pointer;
-  }
-               </style>
-              </div>
-
-
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
     <script>
-        // Tulis daftar kata yang ingin kamu tampilkan secara bergantian di sini
-        const kataKata = [
-            "Information Technology Student",
-            "Web Devloper",
-            "Prompt Engineer"
-        ];
-        
-        let indeksKata = 0;
-        let indeksHuruf = 0;
-        let kataSaatIni = "";
-        let hurufSaatIni = "";
-        let sedangMenghapus = false;
+        const kataKata = ["Information Technology Student", "Web Devloper", "Prompt Engineer"];
+        let indeksKata = 0, indeksHuruf = 0, sedangMenghapus = false;
         
         function efekKetik() {
-            // Jika sudah di ujung daftar, balik lagi ke kata pertama
-            if (indeksKata === kataKata.length) {
-                indeksKata = 0;
-            }
-            
-            kataSaatIni = kataKata[indeksKata];
+            if (indeksKata === kataKata.length) indeksKata = 0;
+            let kataSaatIni = kataKata[indeksKata];
             
             if (sedangMenghapus) {
-                // Mengurangi satu huruf (efek backspace)
-                hurufSaatIni = kataSaatIni.substring(0, indeksHuruf - 1);
+                document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf - 1);
                 indeksHuruf--;
             } else {
-                // Menambah satu huruf (efek mengetik)
-                hurufSaatIni = kataSaatIni.substring(0, indeksHuruf + 1);
+                document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf + 1);
                 indeksHuruf++;
             }
             
-            // Memasukkan teks ke dalam HTML
-            document.getElementById("typing-text").innerHTML = hurufSaatIni;
+            let kecepatan = sedangMenghapus ? 50 : 100;
             
-            // Mengatur kecepatan mengetik
-            let kecepatan = 100; // Kecepatan normal mengetik
-            
-            if (sedangMenghapus) {
-                kecepatan /= 2; // Efek menghapus dibuat lebih cepat
-            }
-            
-            // Jika kata sudah selesai diketik sepenuhnya
             if (!sedangMenghapus && indeksHuruf === kataSaatIni.length) {
-                kecepatan = 2000; // Berhenti selama 2 detik agar sempat dibaca
-                sedangMenghapus = true;
-            } 
-            // Jika kata sudah terhapus semua hingga kosong
-            else if (sedangMenghapus && indeksHuruf === 0) {
-                sedangMenghapus = false;
-                indeksKata++; // Ganti ke kata berikutnya di dalam daftar
-                kecepatan = 500; // Jeda setengah detik sebelum mengetik kata baru
+                kecepatan = 2000; sedangMenghapus = true;
+            } else if (sedangMenghapus && indeksHuruf === 0) {
+                sedangMenghapus = false; indeksKata++; kecepatan = 500;
             }
-            
             setTimeout(efekKetik, kecepatan);
         }
         
-        // Menjalankan fungsinya pertama kali saat web dibuka
         document.addEventListener("DOMContentLoaded", efekKetik);
 
-        
-  // Menunggu sampai seluruh elemen halaman selesai dimuat (window load)
- 
-  window.addEventListener('load', function() {
-    var loader = document.getElementById('preloader');
-    
-    // Kita paksa tunggu 5000 milidetik (3 detik) baru hilang
-    setTimeout(function() {
-      loader.style.opacity = '0';
-      loader.style.visibility = 'hidden';
-    }, 2000); 
-  });
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var loader = document.getElementById('preloader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 2000); 
+        });
     </script>
 </body>
 </html>
