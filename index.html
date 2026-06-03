@@ -19,7 +19,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Mencegah scroll menyamping */
             color: white;
             text-align: center;
         }
@@ -38,7 +38,7 @@
 
         /* KODE RESPONSIVE UNTUK HP */
         @media screen and (max-width: 600px) {
-            h2 { font-size: 22px !important; line-height: 1.2; padding: 0 10px !important; width: 90%; margin: 0 auto !important; }
+            h1 { font-size: 26px !important; line-height: 1.2; padding: 0 10px !important; width: 90%; margin: 0 auto !important; }
             #typing-text { font-size: 14px !important; white-space: normal !important; display: block; padding: 0 10px; }
             p { font-size: 13px !important; margin-top: 5vh !important; }
         }
@@ -48,7 +48,7 @@
     <div id="preloader"><div class="spinner"></div></div>
 
     <h3 class="tracking-in-expand delay-1 font-poppins">Hi, I am</h3>
-    <h2 class="fade-in delay-2 font-poppins" style="margin-top: 0;">Muhammad Ikhsan Akbar</h2>
+    <h1 class="fade-in delay-2 font-poppins" style="margin-top: 0;">Muhammad Ikhsan Akbar</h1>
     
     <div style="text-align: center; height: 60px;" class="fade-in delay-3">
         <span id="typing-text" style="font-size: 16px; border-right: 2px solid #ffffff; padding-right: 2px;"></span>
@@ -69,6 +69,7 @@
     
     function efekKetik() {
         let kataSaatIni = kataKata[indeksKata];
+        
         if (sedangMenghapus) {
             document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf - 1);
             indeksHuruf--;
@@ -78,10 +79,14 @@
         }
         
         let kecepatan = sedangMenghapus ? 50 : 100; 
+        
         if (!sedangMenghapus && indeksHuruf === kataSaatIni.length) {
-            kecepatan = 2000; sedangMenghapus = true;
+            kecepatan = 2000; 
+            sedangMenghapus = true;
         } else if (sedangMenghapus && indeksHuruf === 0) {
-            sedangMenghapus = false; indeksKata = (indeksKata + 1) % kataKata.length; kecepatan = 500;
+            sedangMenghapus = false;
+            indeksKata = (indeksKata + 1) % kataKata.length;
+            kecepatan = 500; 
         }
         setTimeout(efekKetik, kecepatan);
     }
