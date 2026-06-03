@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ikhsan Akbar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-       body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    /* Gradasi warna gelap modern */
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: white;
+        }
 
         #preloader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
             background-color: #000000;
             z-index: 9999;
             display: flex;
@@ -37,8 +36,7 @@
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border: 5px solid rgba(255, 255, 255, 0.1);
             border-top: 5px solid #ffffff;
             border-radius: 50%;
@@ -50,75 +48,28 @@
             100% { transform: rotate(360deg); }
         }
 
-        a:hover, i:hover {
-            opacity: 0.7;
-            transition: 0.3s;
-            cursor: pointer;
+        /* Animasi Utility */
+        .fade-in { opacity: 0; animation: fadeIn 2s ease-in-out forwards; }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-        /* 1. Class yang tadi kamu copy */
-  .tracking-in-expand {
-    -webkit-animation: tracking-in-expand 4.0s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-    animation: tracking-in-expand 4.0s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-  }
+        .tracking-in-expand {
+            animation: tracking-in-expand 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+        @keyframes tracking-in-expand {
+            0% { letter-spacing: -0.5em; opacity: 0; }
+            100% { opacity: 1; }
+        }
 
-  /* 2. Keyframes (Ini WAJIB ada agar animasinya jalan) */
-  @-webkit-keyframes tracking-in-expand {
-    0% { letter-spacing: -0.5em; opacity: 0; }
-    40% { opacity: 0.6; }
-    100% { opacity: 1; }
-  }
-  @keyframes tracking-in-expand {
-    0% { letter-spacing: -0.5em; opacity: 0; }
-    40% { opacity: 0.6; }
-    100% { opacity: 1; }
-  }
-
-  /* 1. Class yang tadi kamu copy */
-  .scale-up-center {
-    -webkit-animation: scale-up-center 1.0s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-    animation: scale-up-center 1.0s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  }
-
-  /* 2. Keyframes (Instruksi gerakannya) */
-  @-webkit-keyframes scale-up-center {
-    0% { -webkit-transform: scale(0.5); transform: scale(0.5); }
-    100% { -webkit-transform: scale(1); transform: scale(1); }
-  }
-  @keyframes scale-up-center {
-    0% { -webkit-transform: scale(0); transform: scale(0); } /* Ukuran awal 50% */
-    100% { -webkit-transform: scale(1); transform: scale(1); } /* Ukuran akhir 100% */
-  }
-
- .tracking-in-expand, .fade-in {
-    opacity: 0;
-    animation-fill-mode: forwards;
-}
-
-
-
-        /* 2. Pengaturan Delay yang sudah diperbaiki */
+        /* Delay */
         .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 5.0s; } /* Muncul setelah 3 detik */
-        .delay-3 { animation-delay: 5.0s; } /* Muncul setelah 5 detik */
+        .delay-2 { animation-delay: 1.5s; }
+        .delay-3 { animation-delay: 2.5s; }
 
-.fade-in {
-    animation: fadeIn 15s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }     /* Awalnya transparan/tidak terlihat */
-    100% { opacity: 1; }   /* Akhirnya terlihat jelas */
-}
-
-.font-poppins {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Kelas untuk mengatur ketebalan */
-.tebal {
-    font-weight: 800;
-}
+        a:hover { opacity: 0.7; transition: 0.3s; cursor: pointer; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
 <body>
@@ -126,77 +77,17 @@
         <div class="spinner"></div>
     </div>
 
-    <h3 style="color: white; text-align: center; margin-bottom: 10px;" class="tracking-in-expand delay-1 font-poppins">Hi, I am</h3>
-    <h1 style="color: white; text-align: center; margin-top: 0" class="fade-in delay-2 font-awesome ">Muhammad Ikhsan Akbar</h1>
+    <h3 class="tracking-in-expand delay-1 font-poppins">Hi, I am</h3>
+    <h1 class="fade-in delay-2 font-poppins" style="margin-top: 0;">Muhammad Ikhsan Akbar</h1>
     
-    <div style="text-align: center; height: 30px;" class="
-    fade-in">
-        <span id="typing-text" style="color: #ffffff; font-size: 16px; border-right: 2px solid #ffffff; padding-right: 2px; white-space: nowrap;"></span>
+    <div style="text-align: center; height: 30px;" class="fade-in delay-3">
+        <span id="typing-text" style="font-size: 16px; border-right: 2px solid #ffffff; padding-right: 2px; white-space: nowrap;"></span>
     </div>
 
-    <p style="color: white; text-align: center; margin-top: 15vh;" class="fade-in">About Me | Journey | Experience</p>
+    <p style="margin-top: 15vh;" class="fade-in delay-3">About Me | Journey | Experience</p>
 
-    <div style="text-align: center; margin-top: 10px;" class="fade-in">
-        <abbr title="Instagram">
-            <a href="https://www.instagram.com/iksnakbr" target="_blank" style="text-decoration: none;">
-                <i class="fa-brands fa-instagram" style="color: white; font-size: 30px; margin: 0 10px;"></i>
-            </a>
-        </abbr>
-        <abbr title="Discord">
-            <a href="https://discordapp.com/users/1386319360590876695" target="_blank" style="text-decoration: none;">
-                <i class="fa-brands fa-discord" style="color: white; font-size: 30px; margin: 0 10px;"></i>
-            </a>
-        </abbr>
-        <abbr title="Github">
-            <a href="https://github.com/Iksnakbr" target="_blank" style="text-decoration: none;"> 
-                <i class="fa-brands fa-github" style="color: white; font-size: 30px; margin: 0 10px;"></i>
-            </a> 
-        </abbr>
-        <abbr title="Gmail">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gadotcr444@gmail.com" target="_blank" style="text-decoration: none;">
-                <i class="fa-solid fa-envelope" style="color: white; font-size: 30px; margin: 0 10px;"></i>
-            </a>
-        </abbr>
-    </div>
-             
-    <script>
-        const kataKata = ["Information Technology Student", "Web Devloper", "Prompt Engineer"];
-        let indeksKata = 0, indeksHuruf = 0, sedangMenghapus = false;
-        
-        function efekKetik() {
-            if (indeksKata === kataKata.length) indeksKata = 0;
-            let kataSaatIni = kataKata[indeksKata];
-            
-            if (sedangMenghapus) {
-                document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf - 1);
-                indeksHuruf--;
-            } else {
-                document.getElementById("typing-text").innerHTML = kataSaatIni.substring(0, indeksHuruf + 1);
-                indeksHuruf++;
-            }
-            
-            let kecepatan = sedangMenghapus ? 50 : 100;
-            
-            if (!sedangMenghapus && indeksHuruf === kataSaatIni.length) {
-                kecepatan = 2000; sedangMenghapus = true;
-            } else if (sedangMenghapus && indeksHuruf === 0) {
-                sedangMenghapus = false; indeksKata++; kecepatan = 500;
-            }
-            setTimeout(efekKetik, kecepatan);
-        }
-        
-        // Tambahkan kode ini:
-setTimeout(function() {
-    efekKetik();
-}, 5000);
-
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                var loader = document.getElementById('preloader');
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-            }, 2000); 
-        });
-    </script>
-</body>
-</html>
+    <div style="text-align: center; margin-top: 10px;" class="fade-in delay-3">
+        <a href="https://www.instagram.com/iksnakbr" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-instagram" style="font-size: 30px; margin: 0 10px;"></i></a>
+        <a href="https://discordapp.com/users/1386319360590876695" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-discord" style="font-size: 30px; margin: 0 10px;"></i></a>
+        <a href="https://github.com/Iksnakbr" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-github" style="font-size: 30px; margin: 0 10px;"></i></a>
+        <a href="
