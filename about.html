@@ -282,23 +282,31 @@
 
         /* FAVORITE BUTTON STYLING */
         label.fav-container {
-            background-color: white;
+            background-color: #1e1e22;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 10px 24px;
+            padding: 12px 28px;
             cursor: pointer;
             user-select: none;
             border-radius: 30px;
-            box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
-            color: black;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 24px;
             width: fit-content;
         }
 
         input[type="checkbox"].fav-input {
             display: none;
         }
+
+        /* PERBAIKAN TEKS TABRAKAN FAVORITES */
+        input[type="checkbox"].fav-input + label.fav-container .action .option-1 { display: block; font-weight: 600; font-size: 0.9em; }
+        input[type="checkbox"].fav-input + label.fav-container .action .option-2 { display: none; font-weight: 600; font-size: 0.9em; }
+
+        input[type="checkbox"].fav-input:checked + label.fav-container .action .option-1 { display: none; }
+        input[type="checkbox"].fav-input:checked + label.fav-container .action .option-2 { display: block; }
 
         input[type="checkbox"].fav-input:checked + label.fav-container svg {
             fill: hsl(0deg 100% 50%);
@@ -314,31 +322,17 @@
             100% { transform: scale(1); }
         }
 
-        input[type="checkbox"].fav-input + label.fav-container .action {
-            position: relative;
-            overflow: hidden;
-            display: grid;
-        }
-
-        input[type="checkbox"].fav-input + label.fav-container .action span {
-            grid-column-start: 1; grid-column-end: 1;
-            grid-row-start: 1; grid-row-end: 1;
-            transition: all .5s;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-
         .mobile-only-layout {
             display: none;
         }
 
 
         /* ===================================================
-           ⚡ MOBILE MEDIA QUERY (100% PRESTISE MATCH FIGMA) ⚡
+           ⚡ MOBILE MEDIA QUERY (PERBAIKAN TOTAL TANPA GRID) ⚡
            =================================================== */
         @media screen and (max-width: 768px) {
             body {
-                padding: 20px 16px !important; 
+                padding: 20px 20px !important; 
             }
 
             .main-container {
@@ -350,40 +344,44 @@
                 flex-direction: column !important;
                 align-items: center !important;
                 width: 100% !important;
-                max-width: 360px !important; 
+                max-width: 350px !important; 
                 margin: 0 auto !important;
                 box-sizing: border-box !important;
             }
 
             /* Judul Atas */
             .mobile-only-layout .mobile-page-title {
-                font-size: 1.5em !important;
+                font-size: 1.6em !important;
                 font-weight: 600 !important;
                 color: #ffffff !important;
                 margin: 10px 0 20px 0 !important;
                 text-align: center !important;
             }
 
-            /* Foto utama di atas */
+            /* Foto Utama */
             .mobile-only-layout .flip-card {
-                width: 240px !important; 
-                height: 300px !important;
+                width: 250px !important; 
+                height: 320px !important;
                 margin: 0 auto 15px auto !important;
             }
 
-            /* Tombol Add to Favorites Putih di bawah foto */
+            /* Tombol Fav yang Lebar Sesuai Gambar */
             .mobile-only-layout label.fav-container {
-                padding: 10px 24px !important;
-                margin: 0 auto 25px auto !important;
-                width: 240px !important; /* Lebar disamakan dengan foto biar simetris */
+                background-color: #1a1a1e !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                color: #ffffff !important;
+                padding: 12px 0 !important;
+                margin: 0 auto 35px auto !important;
+                width: 250px !important; 
                 box-sizing: border-box !important;
                 justify-content: center !important;
+                border-radius: 25px !important;
             }
 
-            /* Nama Ican */
+            /* Nama Ican Gradasi */
             .mobile-only-layout h2 {
-                font-size: 2.5em !important;
-                margin: 0 0 20px 0 !important;
+                font-size: 2.8em !important;
+                margin: 0 0 25px 0 !important;
                 font-weight: 700 !important;
                 text-align: center !important;
                 width: 100% !important;
@@ -393,34 +391,32 @@
                 -webkit-text-fill-color: transparent !important;
             }
 
-            /* ===================================================
-               🔥 GRID UTAMA: TOMBOL KIRI & PARAGRAF KANAN 🔥
-               =================================================== */
-            .mobile-content-grid {
-                display: grid !important;
-                grid-template-columns: auto 1fr !important; /* Kolom 1: Kiri (Tombol), Kolom 2: Kanan (Teks) */
-                gap: 16px !important;
+            /* Wrapper Konten Deskripsi Sampingan Flex */
+            .mobile-desc-container {
+                display: flex !important;
+                flex-direction: row !important;
                 width: 100% !important;
-                align-items: start !important;
+                gap: 15px !important;
+                align-items: flex-start !important;
                 margin-bottom: 25px !important;
             }
 
-            /* Kolom Kiri: Gabungan Home & EN/ID secara vertikal */
+            /* Bagian Kiri (Home & Bahasa) Vertikal */
             .mobile-left-controls {
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
-                gap: 12px !important; /* Jarak vertikal tombol Home ke EN/ID */
-                padding-top: 2px !important;
+                gap: 10px !important;
+                flex-shrink: 0 !important;
             }
 
             /* Tombol Home Bulat Lingkaran Gelap */
             .mobile-only-layout .btn-home {
-                width: 42px !important;
-                height: 42px !important;
+                width: 44px !important;
+                height: 44px !important;
                 padding: 0 !important;
-                background: rgba(255, 255, 255, 0.05) !important;
-                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                background: #141416 !important;
+                border: 1px solid rgba(255, 255, 255, 0.12) !important;
                 border-radius: 50% !important;
                 display: flex !important;
                 align-items: center !important;
@@ -430,63 +426,67 @@
             .mobile-only-layout .btn-home svg {
                 width: 18px !important;
                 height: 18px !important;
+                stroke: #ffffff !important;
             }
 
-            /* Tombol Bahasa EN/ID Tepat Di Bawah Tombol Home */
+            /* Tombol Bahasa Kecil Pas di bawah Home */
             .mobile-only-layout .lang-container {
                 margin: 0 !important;
                 padding: 0 !important;
-                display: block !important;
             }
 
             .mobile-only-layout .btn-lang {
-                background: rgba(255, 255, 255, 0.05) !important;
+                background: #141416 !important;
                 border: 1px solid rgba(255, 255, 255, 0.1) !important;
-                color: #a3a3a3 !important;
+                color: #8e8e93 !important;
                 padding: 6px 10px !important;
-                border-radius: 12px !important;
+                border-radius: 10px !important;
                 font-size: 0.65em !important;
                 font-weight: 600 !important;
                 white-space: nowrap !important;
             }
 
-            /* Kolom Kanan: Paragraf Rapi Kotak Justify Sesuai Gambar */
-            .mobile-only-layout p {
-                font-size: 11.5px !important;
-                line-height: 1.75 !important;
-                text-align: justify !important; 
-                text-justify: inter-word !important;
-                color: #9ca3af !important;
-                margin: 0 !important; 
-                padding: 0 !important;
-                letter-spacing: 0.1px !important;
-                width: 100% !important;
+            /* Bagian Kanan (Teks Paragraf Rapi Kotak Justify) */
+            .mobile-right-text {
+                flex: 1 !important;
             }
 
-            /* ===================================================
-               🚀 SEJAJAR: BOTTOM ACTION BUTTONS EXPLORE 🚀
-               =================================================== */
-            /* Tombol explore diletakkan di bawah grid, lebar disesuaikan pas dengan panjang teks */
+            .mobile-only-layout p {
+                font-size: 12px !important;
+                line-height: 1.75 !important;
+                text-align: justify !important; 
+                color: #a1a1aa !important;
+                margin: 0 0 16px 0 !important; 
+                padding: 0 !important;
+                width: 100% !important;
+            }
+            
+            .mobile-only-layout p:last-child {
+                margin-bottom: 0 !important;
+            }
+
+            /* Tombol Explore Sejajar Rata dengan Paragraf */
             .mobile-only-layout .btn-wrapper {
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
-                gap: 10px !important;
+                gap: 12px !important;
                 width: 100% !important;
-                padding-left: 58px !important; /* Dorong ke kanan biar sejajar mulus dengan awal mulainya teks paragraf */
+                padding-left: 59px !important; /* Pas mendorong tombol sejajar lurus dengan teks kanan */
                 box-sizing: border-box !important;
             }
 
             .mobile-only-layout .btn-cv {
-                flex: 1 !important; /* Membuat kedua tombol explore membagi ruang sama rata */
-                padding: 10px 8px !important; 
-                font-size: 0.72em !important; 
-                border-radius: 25px !important;
+                flex: 1 !important;
+                padding: 12px 5px !important; 
+                font-size: 0.75em !important; 
+                border-radius: 20px !important;
                 white-space: nowrap !important; 
                 text-align: center !important;
-                background: #ffffff !important;
-                color: #000000 !important;
-                font-weight: 600 !important;
+                background: #1c1c1e !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: #ffffff !important;
+                font-weight: 500 !important;
             }
         }
     </style>
@@ -495,6 +495,9 @@
 
     <div class="transition-overlay"></div>
 
+    <!-- ==========================================
+         💻 DESKTOP LAYOUT (LAPTOP)
+         ========================================== -->
     <div class="main-container">
         <div class="about-content">
             <span class="badge">Personal Portfolio</span>
@@ -546,10 +549,14 @@
     </div>
 
 
+    <!-- ==========================================
+         📲 MOBILE LAYOUT (FIX LAYOUT DAN TEXT TABRAKAN)
+         ========================================== -->
     <div class="mobile-only-layout">
         
         <div class="mobile-page-title">About Me</div>
 
+        <!-- Foto Utama -->
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -561,6 +568,7 @@
             </div>
         </div>
 
+        <!-- Tombol Favorites Bersih Tanpa Tabrakan -->
         <input type="checkbox" id="favorite-mobile" class="fav-input" name="favorite-checkbox">
         <label for="favorite-mobile" class="fav-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -572,8 +580,10 @@
 
         <h2>Ican</h2>
 
-        <div class="mobile-content-grid">
+        <!-- Wadah Deskripsi Bersih Sampingan -->
+        <div class="mobile-desc-container">
             
+            <!-- Kolom Kiri Kancing Vertikal -->
             <div class="mobile-left-controls">
                 <a href="index.html" class="btn-home">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -583,17 +593,21 @@
                 </div>
             </div>
 
+            <!-- Kolom Teks Paragraf Terpisah Rapi Kotak -->
             <div class="mobile-right-text">
                 <div class="lang-en">
-                    <p>Hello! I am Muhammad Ikhsan Akbar, a Management Informatics student at Politeknik Negeri Sriwijaya. Since my background is in IT, I’m dedicated to leveling up my skills in programming, business analysis, and English.<br><br>This website was built as my first platform to put what I've learned into practice. Moving forward, I look forward to growing further, boosting my work efficiency, and honing my skills for the future.</p>
+                    <p>Hello! I am Muhammad Ikhsan Akbar, a Management Informatics student at Politeknik Negeri Sriwijaya. Since my background is in IT, I’m dedicated to leveling up my skills in programming, business analysis, and English.</p>
+                    <p>This website was built as my first platform to put what I've learned into practice. Moving forward, I look forward to growing further, boosting my work efficiency, and honing my skills for the future.</p>
                 </div>
                 <div class="lang-id">
-                    <p>Halo! Saya Muhammad Ikhsan Akbar, seorang mahasiswa program studi Manajemen Informatika di Politeknik Negeri Sriwijaya. Sebagai mahasiswa yang berbasis IT, saya terus berupaya meningkatkan skill dalam programming, analisis kebutuhan bisnis, dan bahasa Inggris.<br><br>Website ini dibuat sebagai wadah perdana untuk mengaplikasikan hal yang saya pelajari dalam beberapa waktu. Seiring berjalannya waktu, saya berharap dapat terus berkembang, meningkatkan efisiensi kerja, dan mengasah kemampuan saya untuk ke depannya.</p>
+                    <p>Halo! Saya Muhammad Ikhsan Akbar, seorang mahasiswa program studi Manajemen Informatika di Politeknik Negeri Sriwijaya. Sebagai mahasiswa yang berbasis IT, saya terus berupaya meningkatkan skill dalam programming, analisis kebutuhan bisnis, dan bahasa Inggris.</p>
+                    <p>Website ini dibuat sebagai wadah perdana untuk mengaplikasikan hal yang saya pelajari dalam beberapa waktu. Seiring berjalannya waktu, saya berharap dapat terus berkembang, meningkatkan efisiensi kerja, dan mengasah kemampuan saya untuk ke depannya.</p>
                 </div>
             </div>
 
         </div>
 
+        <!-- Tombol Bawah Sejajar Panjang Paragraf Kanan -->
         <div class="btn-wrapper">
             <a href="journey.html" class="btn-cv">Explore My Journey</a>
             <a href="experience.html" class="btn-cv">Explore My Experience</a>
