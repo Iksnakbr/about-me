@@ -95,6 +95,8 @@
         .about-text {
             flex: 1;
             min-width: 320px;   
+            display: flex;
+            flex-direction: column;
         }
 
         /* ====== 🌐 STYLE TOMBOL SWITCH BAHASA ====== */
@@ -142,6 +144,7 @@
             letter-spacing: 1px;
             margin-bottom: 15px;
             text-transform: uppercase;
+            width: fit-content;
         }
 
         .about-text h2 {
@@ -211,12 +214,21 @@
             color: #ffffff;
         }
 
-        /* ====== 📦 WADAH KARTU & TOMBOL SEJAJAR KE BAWAH 📦 ====== */
+        /* ====== 📦 WADAH KARTU (DESKTOP) 📦 ====== */
         .card-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 25px; 
+        }
+
+        /* Elemen tombol fav di desktop ditaruh di bawah kartu profil */
+        .desktop-fav {
+            display: block;
+        }
+        /* Disembunyikan saat mode desktop */
+        .mobile-fav {
+            display: none;
         }
 
         /* ====== DESAIN KARTU FLIP SEBELAH KANAN ====== */
@@ -279,7 +291,7 @@
             opacity: 0.65;        
         }
 
-        /* ====== ❤️ STYLE CSS TOMBOL FAVORITE UIVERSE ❤️ ====== */
+        /* ====== ❤️ STYLE CSS TOMBOL FAVORITE ❤️ ====== */
         label.container {
             background-color: white;
             display: flex;
@@ -294,11 +306,11 @@
             width: fit-content;
         }
 
-        input[type="checkbox"]#favorite {
+        input[type="checkbox"].favorite-check {
             display: none;
         }
 
-        input[type="checkbox"]#favorite:checked + label.container svg {
+        input[type="checkbox"].favorite-check:checked + label.container svg {
             fill: hsl(0deg 100% 50%);
             stroke: hsl(0deg 100% 50%);
             animation: heartButton 1s;
@@ -312,13 +324,13 @@
             100% { transform: scale(1); }
         }
 
-        input[type="checkbox"]#favorite + label.container .action {
+        input[type="checkbox"].favorite-check + label.container .action {
             position: relative;
             overflow: hidden;
             display: grid;
         }
 
-        input[type="checkbox"]#favorite + label.container .action span {
+        input[type="checkbox"].favorite-check + label.container .action span {
             grid-column-start: 1;
             grid-column-end: 1;
             grid-row-start: 1;
@@ -327,92 +339,127 @@
             font-weight: 600;
         }
 
-        input[type="checkbox"]#favorite + label.container .action span.option-1 {
+        input[type="checkbox"].favorite-check + label.container .action span.option-1 {
             transform: translate(0px,0%);
             opacity: 1;
         }
 
-        input[type="checkbox"]#favorite:checked + label.container .action span.option-1 {
+        input[type="checkbox"].favorite-check:checked + label.container .action span.option-1 {
             transform: translate(0px,-100%);
             opacity: 0;
         }
 
-        input[type="checkbox"]#favorite + label.container .action span.option-2 {
+        input[type="checkbox"].favorite-check + label.container .action span.option-2 {
             transform: translate(0px,100%);
             opacity: 0;
         }
 
-        input[type="checkbox"]#favorite:checked + label.container .action span.option-2 {
+        input[type="checkbox"].favorite-check:checked + label.container .action span.option-2 {
             transform: translate(0px,0%);
             opacity: 1;
         }
 
         /* ===================================================
-           ⚡ POTONGAN KODE RESPONSIF AKURAT SESUAI FIGMA ⚡
+           ⚡ POTONGAN KODE RESPONSIF REAL & AKURAT ⚡
            =================================================== */
         @media screen and (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+
             .main-container {
-                flex-direction: column-reverse; /* 💡 KUNCI: Memutar urutan agar Card (kanan) naik ke atas Teks (kiri) */
+                display: flex;
+                flex-direction: column; /* Kartu berada di atas, Teks di bawah */
                 gap: 20px; 
-                padding: 10px 25px;
+                padding: 0px 10px;
             }
 
+            /* 1. Atur Area Kartu */
             .card-wrapper {
-                order: 1; /* Memastikan Card nangkring di atas */
-                gap: 15px;
+                order: 1; 
+                width: 100%;
+                display: flex;
+                justify-content: center;
             }
 
+            .flip-card {
+                width: 215px; 
+                height: 285px; 
+            }
+
+            /* Sembunyikan tombol favorit bawaan desktop */
+            .desktop-fav {
+                display: none;
+            }
+
+            /* Tampilkan tombol favorit versi susunan mobile */
+            .mobile-fav {
+                display: flex;
+                margin: 10px auto 15px auto;
+            }
+
+            /* 2. Atur Area Teks & Konten */
             .about-text {
-                order: 2; /* Teks berada di bawah card */
+                order: 2; 
                 min-width: 100%; 
-                text-align: center; /* Mengubah teks judul ke tengah */
+                text-align: center; 
+                align-items: center;
+            }
+
+            .badge {
+                order: 1;
+                margin-bottom: 8px;
+            }
+
+            .about-text h2 {
+                order: 2; 
+                font-size: 2.2em; 
+                margin: 5px 0 12px 0;
+            }
+
+            .lang-en, .lang-id {
+                order: 3;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
 
-            .flip-card {
-                width: 215px; 
-                height: 285px; /* Disesuaikan dengan aspek rasio figma HP */
-            }
-
-            .about-text h2 {
-                font-size: 2.2em; /* Ukuran teks nama "Ican" disesuaikan */
-                margin: 10px 0;
-            }
-
             .about-text p {
-                font-size: 10px !important; /* Ukuran teks deskripsi kecil elegan sesuai Figma (Poppins 10) */
+                font-size: 10px !important; 
                 line-height: 1.6 !important;
-                text-align: center; /* 💡 KUNCI: Rata tengah sesuai visual prototipe */
-                max-width: 303px; /* Membatasi lebar teks agar tidak meluber kesamping */
-                margin-bottom: 15px;
+                text-align: center; 
+                max-width: 303px; 
+                margin-bottom: 12px;
                 color: #9ca3af;
             }
 
+            /* Tombol Navigasi Sejajar ke Samping */
             .btn-wrapper {
+                order: 5; 
                 display: flex;
-                flex-direction: row; /* 💡 KUNCI: Tetap berjejer ke samping */
+                flex-direction: row; 
                 justify-content: center;
-                flex-wrap: nowrap; /* Mencegah tombol patah ke bawah */
+                flex-wrap: nowrap; 
                 gap: 8px;
                 width: auto;
-                margin-top: 10px;
+                margin-top: 5px;
             }
 
-            /* Mengecilkan padding tombol di HP agar muat presisi kesamping */
             .btn-home {
                 padding: 10px 14px;
             }
             .btn-cv {
                 padding: 10px 16px;
-                font-size: 0.8em;
-                white-space: nowrap; /* Teks tombol tidak kepotong baris baru */
+                font-size: 0.78em;
+                white-space: nowrap; 
             }
 
+            /* Pilihan bahasa paling bawah */
             .lang-container {
+                order: 6; 
                 justify-content: center; 
-                margin-top: 25px;
+                margin-top: 15px;
             }
         }
     </style>
@@ -439,6 +486,19 @@
             <div class="lang-id">
                 <p>Halo! Saya Muhammad Ikhsan Akbar, seorang mahasiswa program studi Manajemen Informatika di Politeknik Negeri Sriwijaya. Sebagai mahasiswa yang berbasis IT, saya terus berupaya meningkatkan skill dalam programming, analisis kebutuhan bisnis, dan bahasa Inggris.</p>
                 <p>Website ini dibuat sebagai wadah perdana untuk mengaplikasikan hal yang saya pelajari dalam beberapa waktu. Seiring berjalannya waktu, saya berharap dapat terus berkembang, meningkatkan efisiensi kerja, dan mengasah kemampuan saya untuk ke depannya.</p>
+            </div>
+
+            <div class="mobile-fav">
+                <input type="checkbox" id="favorite-mobile" class="favorite-check" name="favorite-checkbox">
+                <label for="favorite-mobile" class="container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <div class="action">
+                        <span class="option-1">Add to Favorites</span>
+                        <span class="option-2">Added to Favorites</span>
+                    </div>
+                </label>
             </div>
             
             <div class="btn-wrapper">
@@ -471,16 +531,18 @@
                 </div>
             </div>
 
-            <input type="checkbox" id="favorite" name="favorite-checkbox" value="favorite-button">
-            <label for="favorite" class="container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-                <div class="action">
-                    <span class="option-1">Add to Favorites</span>
-                    <span class="option-2">Added to Favorites</span>
-                </div>
-            </label>
+            <div class="desktop-fav">
+                <input type="checkbox" id="favorite-desktop" class="favorite-check" name="favorite-checkbox">
+                <label for="favorite-desktop" class="container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <div class="action">
+                        <span class="option-1">Add to Favorites</span>
+                        <span class="option-2">Added to Favorites</span>
+                    </div>
+                </label>
+            </div>
 
         </div>
     </div> 
