@@ -66,9 +66,17 @@
         }
 
         @media screen and (max-width: 600px) {
-            h1 { font-size: 26px !important; line-height: 1.2; padding: 0 10px !important; width: 90%; margin: 0 auto !important; }
+            h1 {
+                font-size: clamp(16px, 5.6vw, 25px) !important;
+                line-height: 1.2;
+                white-space: nowrap;          /* nama jadi SATU baris, 'Akbar' gak turun */
+                width: auto;
+                padding: 0 !important;
+                margin: 0 auto !important;
+            }
             #typing-text { font-size: 14px !important; white-space: normal !important; display: block; padding: 0 10px; }
-            p { font-size: 13px !important; margin-top: 5vh !important; }
+            p { font-size: 13px !important; margin-top: 10vh !important; }   /* teks nav turun sedikit */
+            .social-links { margin-top: 20px !important; }                  /* ikon sosmed turun sedikit */
         }
     </style>
 </head>
@@ -90,7 +98,7 @@
         <a href="experience.html" style="color: #ffffff; text-decoration: none;">Experience</a>
     </p>
 
-    <div style="text-align: center; margin-top: 10px;" class="fade-in delay-3">
+    <div style="text-align: center; margin-top: 10px;" class="fade-in delay-3 social-links">
         <a href="https://www.instagram.com/iksnakbr" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-instagram" style="font-size: 30px; margin: 0 10px;"></i></a>
         <a href="https://discordapp.com/users/1386319360590876695" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-discord" style="font-size: 30px; margin: 0 10px;"></i></a>
         <a href="https://github.com/Iksnakbr" target="_blank" style="text-decoration: none; color: white;"><i class="fa-brands fa-github" style="font-size: 30px; margin: 0 10px;"></i></a>
