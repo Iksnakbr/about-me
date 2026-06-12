@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: linear-gradient(135deg, #0f0f11 0%, #000000 100%);
+  background-attachment: fixed;
+  font-family: 'Poppins', sans-serif;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: rgba(168, 85, 247, 0.10);
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 5%;
+  right: -5%;
+  width: 450px;
+  height: 450px;
+  background: rgba(168, 85, 247, 0.10);
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 0;
+}
+
+a { text-decoration: none; }
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+}
+
+/* ── Lang toggle ── */
+.lang-id { display: none !important; }
+body.lang-indo .lang-en { display: none !important; }
+body.lang-indo .lang-id { display: inline !important; }
+
+/* ── Page transition ── */
+.transition-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: #121214;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+body.is-loading .transition-overlay {
+  animation: revealPage 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+.transition-overlay.is-active {
+  animation: coverPage 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards !important;
+}
+@keyframes revealPage {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+@keyframes coverPage {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+/* ────────────────────────────────────────────
+   PAGE WRAPPER
+──────────────────────────────────────────── */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 16px 60px;
+}
+
+/* ── Header ── */
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.heading-experience {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 8vw, 64px);
+  line-height: 1.1;
+  background: linear-gradient(90deg, #ffffff 40%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8a8a9e;
+  margin-top: 8px;
+}
+
+/* ── Cards grid ── */
+.cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .page-wrapper {
+    padding: 56px 40px 80px;
+  }
+}
+
+/* ── Single card ── */
+.exp-card {
+  background: rgba(208, 188, 255, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── Logo circle ── */
+.logo-circle {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+.logo-circle::before {
+  content: attr(data-initial);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6d28d9;
+  font-weight: 800;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+}
+.logo-circle img {
+  position: relative;
+  z-index: 1;
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+}
+
+/* ── Card text ── */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.org-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.org-role {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #c4a5f7;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.org-role .role-alt {
+  color: #93c5fd;
+}
+
+.org-date {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #8a8a9e;
+  font-size: 12px;
+}
+
+.card-desc {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #9ca3af;
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ────────────────────────────────────────────
+   BOTTOM NAV
+──────────────────────────────────────────── */
+.bottom-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 36px;
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link-home {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+.link-home:hover {
+  background: rgba(255, 255, 255, 0.20);
+  transform: translateY(-2px);
+}
+
+.btn-pill {
+  height: 44px;
+  padding: 0 18px;
+  background: #ffffff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #000000;
+  font-size: clamp(12px, 3.2vw, 14px);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.btn-pill:hover {
+  background: #a855f7;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-lang {
+  all: unset;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #9ca3af;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-lang:hover {
+  background: rgba(168, 85, 247, 0.20);
+  color: #ffffff;
+}
+</style>
+</head>
+<body class="is-loading">
+
+<div class="transition-overlay"></div>
+
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="heading-experience">Experience</div>
+    <div class="page-subtitle">
+      <span class="lang-en">My organizational experience</span>
+      <span class="lang-id">Pengalaman organisasi saya</span>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards-grid">
+
+    <!-- Card 1: Sanpala -->
+    <div class="exp-card">
+      <div class="card-header">
+        <div class="logo-circle" data-initial="S">
+          <img src="experience/sanpala.png" alt="Sanpala Aulia Cendekia" onerror="this.remove()">
+        </div>
+        <div class="card-info">
+          <div class="org-name">Sanpala Aulia Cendekia</div>
+          <div class="org-role">
+            <span class="lang-en">Junior Member</span>
+            <span class="lang-id">Anggota Muda</span>
+          </div>
+          <div class="org-date">
+            <span class="lang-en">2023 – Present</span>
+            <span class="lang-id">2023 – sekarang</span>
+          </div>
+        </div>
+      </div>
+      <p class="card-desc">
+        <span class="lang-en">In my first year at Ponpes Aulia Cendekia, I became interested in joining Sanpala (Santri Pecinta Alam). Through this organization I learned a great deal about teamwork, professionalism, loyalty, and integrity. I was also part of the committee for the 9th and 10th Sanpala basic training (Diksar). After two years as a junior member, I stepped down from the active board, passing it on to the next generation. Although I'm no longer an active board member, I'm still a Junior Member of the 2023 cohort.</span>
+        <span class="lang-id">Di tahun pertama saya di Ponpes Aulia Cendekia, Saya tertarik mengikuti Organisasi Sanpala (Santri Pecinta Alam) di Ponpes Aulia Cendekia. Mengikuti organisasi ini, saya belajar banyak tentang kerja sama, profesional, loyalitas dan integritas. Saya juga terlibat dalam panitia Diksar Sanpala Ke-9 dan Ke-10. Sudah 2 tahun menjadi anggota muda dan pada akhirnya tahun turun jabatan dari pengurus aktif dan diteruskan generasi selanjutnya. Meskipun bukan menjadi pengurus aktif lagi, tapi saya masih berstatus Anggota Muda angkatan tahun 2023.</span>
+      </p>
+    </div>
+
+    <!-- Card 2: Sinar Cimande -->
+    <div class="exp-card">
+      <div class="card-header">
+        <div class="logo-circle" data-initial="SC">
+          <img src="experience/cimande.png" alt="Sinar Cimande Palembang" onerror="this.remove()">
+        </div>
+        <div class="card-info">
+          <div class="org-name">Sinar Cimande Palembang</div>
+          <div class="org-role">
+            <span class="lang-en">Board Member</span>
+            <span class="lang-id">Pengurus</span>
+          </div>
+          <div class="org-date">
+            <span class="lang-en">2024 – Present</span>
+            <span class="lang-id">2024 – sekarang</span>
+          </div>
+        </div>
+      </div>
+      <p class="card-desc">
+        <span class="lang-en">I joined this Pencak Silat group in my first year at Ponpes Aulia Cendekia (2023). In roughly eight months I completed my training and took the final exam to become an official member. In 2024 I was formally inducted as a member and active board member. I served as an active board member for about two years. By the end of 2025 I decided to become a boarding santri (PP) and stepped back from the board. Even so, I still drop by from time to time to coach.</span>
+        <span class="lang-id">Saya mengikuti Pencak Silat Ini, pada tahun awal saya di Ponpes Aulia Cendekia 2023. Kurang lebih dalam waktu 8 bulan saya menyelesaikan latihan saya dan mengikuti ujian akhir untuk menjadi anggota resmi. Pada tahun 2024 saya resmi diangkat menjadi anggota dan pengurus aktif. Kurang lebih 2 tahun saya mengabdi menjadi Pengurus Aktif. Saya juga terlibat dalam setiap kegiatan ujian kenaikan tingkat pada masa aktif saya. Pada akhir tahun 2025 saya memutuskan menjadi santri PP dan tidak aktif lagi menjadi pengurus. Namun saya masih sesekali datang untuk melatih walapun tidak seaktif dulu.</span>
+      </p>
+    </div>
+
+    <!-- Card 3: IPNU -->
+    <div class="exp-card">
+      <div class="card-header">
+        <div class="logo-circle" data-initial="IP">
+          <img src="experience/ipnu.png" alt="Ikatan Pelajar Nahdlatul Ulama" onerror="this.remove()">
+        </div>
+        <div class="card-info">
+          <div class="org-name">Ikatan Pelajar Nadhlatul Ulama</div>
+          <div class="org-role">
+            <span class="lang-en">Board Member <span class="role-alt">• Academic Division</span></span>
+            <span class="lang-id">Pengurus <span class="role-alt">• Bidang Keilmuan</span></span>
+          </div>
+          <div class="org-date">2025 - 2026</div>
+        </div>
+      </div>
+      <p class="card-desc">
+        <span class="lang-en">At Ponpes Aulia Cendekia, senior students are required to join IPNU or IPPNU, since this organization handles the formal-school side of the pesantren. My term of service ran from the middle of 11th grade to the end of 12th grade. I was heavily involved in events, competitions, meetings, and school programs. In the end, the board was handed over to the next generation.</span>
+        <span class="lang-id">Di dalam Ponpes Aulia Cendekia, para santri kelas akhir diwajibkan mengikuti organisasi IPNU atau IPPNU. Karna organisasi ini bergerak dalam mengurus bagian sekolah formal Ponpes Aulia Cendekia. Masa abdi saya pada pertengahan kelas 11 sampai akhir kelas 12. Saya banyak terlibat dalam kegiatan acara, lomba, rapat, dan program sekolah. Pada akhirnya, Sudah pergantian pengurus ke generasi selanjutnya.</span>
+      </p>
+    </div>
+
+    <!-- Card 4: IKSA -->
+    <div class="exp-card">
+      <div class="card-header">
+        <div class="logo-circle" data-initial="IK">
+          <img src="experience/aulia.jpg" alt="Ikatan Santri Aulia Cendekia" onerror="this.remove()">
+        </div>
+        <div class="card-info">
+          <div class="org-name">Ikatan Santri Aulia Cendekia</div>
+          <div class="org-role">
+            <span class="lang-en">Vice Chair <span class="role-alt">• Academic Division</span></span>
+            <span class="lang-id">Wakil Pengurus <span class="role-alt">• Bidang Keilmuan</span></span>
+          </div>
+          <div class="org-date">2025 - 2026</div>
+        </div>
+      </div>
+      <p class="card-desc">
+        <span class="lang-en">Ponpes Aulia Cendekia also requires resident (mukim) santri to serve on the IKSA board (Ikatan Santri Aulia Cendekia). I served the boarding school from the middle to the end of 11th grade, since I moved to become a non-resident santri. I took part in many activities, events, and competitions. I learned to set a good example for the younger students at the pesantren.</span>
+        <span class="lang-id">Ponpes Aulia Cendekia juga mewajibkan santri mukim untuk menjadi pengurus IKSA (Ikatan Santri Aulia Cendekia). Saya mengabdi untuk pondok pada pertengahan sampai akhir kelas 11, Karena saya pindah menjadi santri non-mukim. Saya terlibat banyak kegiatan, acara, dan lomba yang di selenggarakan. Saya belajar menjadi contoh yang baik untuk adik-adik saya di pondok.</span>
+      </p>
+    </div>
+
+  </div><!-- /cards-grid -->
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-row">
+      <a href="index.html" class="link-home" aria-label="Home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </a>
+      <a href="about.html" class="btn-pill">Explore About Me</a>
+      <a href="journey.html" class="btn-pill">Explore My Journey</a>
+    </div>
+    <button class="btn-lang classLangToggle">EN / ID</button>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+<script>
+  document.querySelectorAll('.classLangToggle').forEach(btn => {
+    btn.addEventListener('click', () => document.body.classList.toggle('lang-indo'));
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => document.body.classList.remove('is-loading'), 600);
+  });
+
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (this.hostname === window.location.hostname && this.getAttribute('href').includes('.html')) {
+        e.preventDefault();
+        const url = this.href;
+        const overlay = document.querySelector('.transition-overlay');
+        overlay.classList.add('is-active');
+        setTimeout(() => { window.location.href = url; }, 600);
+      }
+    });
+  });
+</script>
+</body>
+</html>
